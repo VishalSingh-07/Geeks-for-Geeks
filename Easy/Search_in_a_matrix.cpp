@@ -27,6 +27,33 @@ using namespace std;
 // 	}
 // };
 
+// Applying Binary search on each row
+// Time complexity --> O(N+logM) and Space --> O(1)
+// class Solution{
+// public:	
+// 	int matSearch (vector <vector <int>> &mat, int N, int M, int X)
+// 	{
+// 	    // your code here
+// 	    int low=0,high=M-1;
+// 	    while(low>=0 && low<N && high>=0 && high<M)
+// 	    {
+// 	        if(X>mat[low][high])
+// 	        {
+// 	            low++;
+// 	        }
+// 	        else if(X<mat[low][high])
+// 	        {
+// 	            high--;
+// 	        }
+// 	        else if(X==mat[low][high])
+// 	        {
+// 	            return 1;
+// 	        }
+// 	    }
+// 	    return 0;
+// 	}
+// };
+
 // Optimized Approach
 // Time complexity --> O(N + M) and Space --> O(1)
 class Solution{
