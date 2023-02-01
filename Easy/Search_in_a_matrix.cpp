@@ -27,32 +27,40 @@ using namespace std;
 // 	}
 // };
 
-// Applying Binary search on each row
-// Time complexity --> O(N+logM) and Space --> O(1)
-// class Solution{
-// public:	
-// 	int matSearch (vector <vector <int>> &mat, int N, int M, int X)
-// 	{
-// 	    // your code here
-// 	    int low=0,high=M-1;
-// 	    while(low>=0 && low<N && high>=0 && high<M)
-// 	    {
-// 	        if(X>mat[low][high])
-// 	        {
-// 	            low++;
-// 	        }
-// 	        else if(X<mat[low][high])
-// 	        {
-// 	            high--;
-// 	        }
-// 	        else if(X==mat[low][high])
-// 	        {
-// 	            return 1;
-// 	        }
-// 	    }
-// 	    return 0;
-// 	}
-// };
+
+// Applying binary search on each row
+// Time complexity --> O(N*logM) and Space --> O(1)
+class Solution{
+public:	
+	int matSearch (vector <vector <int>> &mat, int N, int M, int X)
+	{
+	    // your code here
+	    for(int i=0;i<N;i++)
+	    {
+	        int low=0,high=M-1;
+	        while(low<=high)
+	        {
+	            int mid=low+(high-low)/2;
+	            if(X>mat[i][mid])
+	            {
+	                low=mid+1;
+	            }
+	            else if(X<mat[i][mid])
+	            {
+	                high=mid-1;
+	            }
+	            else if(X==mat[i][mid])
+	            {
+	                return 1;
+	            }
+	        }
+	        
+	        
+	    }
+	    
+	    return 0;
+	}
+};
 
 // Optimized Approach
 // Time complexity --> O(N + M) and Space --> O(1)
@@ -80,8 +88,6 @@ public:
 	    return 0;
 	}
 };
-
-
 //{ Driver Code Starts.
 
 int main ()
@@ -102,3 +108,7 @@ int main ()
 // } Driver Code Ends
 
 // Question link -- https://practice.geeksforgeeks.org/problems/search-in-a-matrix17201720/1
+
+// Video Link -- https://youtu.be/ZYpYur0znng
+
+// My Detail Solution link -- https://leetcode.com/problems/search-a-2d-matrix/solutions/3122363/4-approach-to-solve-a-problem-easy-c-solution-brute-force-to-optimized-approach/
