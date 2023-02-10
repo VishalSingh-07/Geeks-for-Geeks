@@ -4,35 +4,120 @@ using namespace std;
 
 
 // } Driver Code Ends
+
+// Brute Force Approach [Using Sorting]
+// Time complexity --> O(nlogn+mlogm) and Space --> O(1)
+/*
+Where 
+    n = length of string s [s.size()]
+    m = length of string t [t.size()]
+*/
+// class Solution
+// {
+//     public:
+//     //Function is to check whether two strings are anagram of each other or not.
+//     bool isAnagram(string a, string b){
+        
+//         // Your code here
+//         if(a.size()!=b.size())
+//         {
+//             return false;
+//         }
+//         sort(a.begin(),a.end());
+//         sort(b.begin(),b.end());
+
+//         return a==b?true:false;
+        
+//     }
+
+// };
+
+// Optimized Approach [Hash Table]
+// Time complexity --> O(n+m) ~ O(n) and Space --> O(1)
+/*
+Where 
+    n = length of string s 
+    m = length of string t
+*/
+// class Solution
+// {
+//     public:
+//     //Function is to check whether two strings are anagram of each other or not.
+//     bool isAnagram(string a, string b){
+        
+//         // Your code here
+//         int i, h[26]={0};
+//         for(i=0;a[i]!='\0';i++)
+//         {
+//             h[a[i]-97]++;
+//         }
+//         for(i=0;b[i]!='\0';i++)
+//         {
+//             h[b[i]-97]--;
+//             if(h[b[i]-97]<0)
+//             {
+//                 return false;
+                
+//             }
+//         }
+//         if(b[i]=='\0')
+//         {
+//             return true;
+//         }
+        
+//     }
+
+// };
+
+//or
+
+// Time complexity --> O(n) and Space --> O(1)
+/*
+Where 
+    n = length of string s 
+    m = length of string t
+*/
+
 class Solution
 {
     public:
+    
+     bool allZeroes(vector<int>& count)
+    {
+        for (int i = 0; i < 26; i++) {
+            if(count[i] != 0)
+                return false;
+        }
+        return true;
+    }
     //Function is to check whether two strings are anagram of each other or not.
     bool isAnagram(string a, string b){
         
         // Your code here
-        int i, h[26]={0};
-        for(i=0;a[i]!='\0';i++)
+        int n = a.length();
+        int m = b.length();
+        if(n != m)
         {
-            h[a[i]-97]++;
+            return false;
+        }  
+        vector<int> count(26, 0);
+        for (int i = 0; i < n; i++) {
+            count[a[i] - 'a']++;
+            count[b[i] - 'a']--;
         }
-        for(i=0;b[i]!='\0';i++)
+        if(allZeroes(count) == false)
         {
-            h[b[i]-97]--;
-            if(h[b[i]-97]<0)
-            {
-                return false;
-                break;
-            }
+            return false;
         }
-        if(b[i]=='\0')
-        {
-            return true;
-        }
+            
+        return true;
+        
         
     }
 
 };
+
+
 
 //{ Driver Code Starts.
 
