@@ -43,6 +43,7 @@ Constraints:
 */
 
 //{ Driver Code Starts
+//Initial Template for C++
 // C program to find n'th Node in linked list
 #include <stdio.h>
 #include <stdlib.h>
@@ -66,6 +67,88 @@ int getNthFromLast(struct Node* head, int n);
 
 
 /* Driver program to test above function*/
+
+// } Driver Code Ends
+/* struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+
+// Brute Force Approach
+// Time complexity -> O(2n) ~ O(n) and Space -> O(1)
+//Function to find the data of nth node from the end of a linked list.
+// class Solution{
+// public:
+//     int getNthFromLast(Node *head, int n)
+//     {
+//       // Your code here
+//         int count=0;
+//         Node *temp=head;
+//         Node *ele;
+//         while(temp!=NULL)
+//         {
+//             count++;
+//             temp=temp->next;
+//         }
+//         if(n>count)
+//         {
+//             return -1;
+//         }
+//         if(count==n)
+//         {
+//             return head->data;
+//         }
+//         int pos=count-n;
+//         while(pos--)
+//         {
+//             head=head->next;
+//         }
+//         return head->data;
+//     }
+// };
+
+// Optimized Approach
+// Time complexity -> O(n) and Space -> O(1)
+class Solution{
+public:
+    int getNthFromLast(Node *head, int n)
+    {
+        // Your code here
+        Node *slow=head,*fast=head;
+        while(n--)
+        {
+            if(fast!=NULL)
+            {
+                fast=fast->next;   
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        if(fast==NULL)
+        {
+            return head->data;
+        }
+        while(fast->next!=NULL)
+        {
+            fast=fast->next;
+            slow=slow->next;
+        }
+        return slow->next->data;
+    }
+};
+
+
+
+//{ Driver Code Starts.
+
 int main()
 {
   int T,i,n,l,k;
@@ -86,95 +169,12 @@ int main()
             tail->next = new Node(l);
             tail = tail->next;
         }
-
-    cout<<getNthFromLast(head, k)<<endl;
+    Solution obj;
+    cout<<obj.getNthFromLast(head, k)<<endl;
     }
     return 0;
 }
 // } Driver Code Ends
-
-
-/* struct Node {
-  int data;
-  struct Node *next;
-  Node(int x) {
-    data = x;
-    next = NULL;
-  }
-};
-*/
-
-// Brute Force Approach
-// Time complexity -> O(2n) ~ O(n) and Space -> O(1)
-//Function to find the data of nth node from the end of a linked list.
-// int getNthFromLast(Node *head, int n)
-// {
-//       // Your code here
-//     int count=0;
-//     Node *temp=head;
-//     Node *del;
-//     while(temp!=NULL)
-//     {
-//         count++;
-//         temp=temp->next;
-//     }
-//     if(n>count)
-//     {
-//         return -1;
-//     }
-//     if(count==n)
-//     {
-//         del=head;
-//         head=head->next;
-//         return del->data;
-//     }
-//     int pos=count-n;
-//     del=head;
-//     Node *q=NULL;
-//     while(pos--)
-//     {
-//         q=del;
-//         del=del->next;
-//     }
-//     q->next=del->next;
-//     return del->data;
-// }
-
-
-// Optimized Approach
-// Time complexity -> O(n) and Space -> O(1)
-//Function to find the data of nth node from the end of a linked list.
-int getNthFromLast(Node *head, int n)
-{
-    // Your code here
-    Node *slow=head,*fast=head,*del;
-    while(n--)
-    {
-        if(fast!=NULL)
-        {
-            fast=fast->next;   
-        }
-        else
-        {
-            return -1;
-        }
-    }
-    if(fast==NULL)
-    {
-        return head->data;
-    }
-    while(fast->next!=NULL)
-    {
-        fast=fast->next;
-        slow=slow->next;
-    }
-    del=slow->next;
-    slow->next=slow->next->next;
-    return del->data;
-       
-}
-
-
 
 /*
 1. Question link -- https://practice.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
