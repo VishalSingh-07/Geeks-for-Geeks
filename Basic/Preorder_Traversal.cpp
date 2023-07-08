@@ -128,34 +128,55 @@ struct Node
 };
 */
 
+// Iterative Approach
 //Function to return a list containing the preorder traversal of the tree.
-vector <int> preorder(Node* root)
-{
-    // Your code here
-    stack<Node*> st;
+// vector <int> preorder(Node* root)
+// {
+//     // Your code here
+//     stack<Node*> st;
+//     vector<int> ans;
+    
+//     if(root==NULL)
+//     {
+//         return ans;
+//     }
+    
+//     while(root!=NULL || !st.empty())
+//     {
+//         if(root!=NULL)
+//         {
+//             ans.push_back(root->data);
+//             st.push(root);
+//             root=root->left;
+//         }
+//         else
+//         {
+//             root = st.top();
+//             st.pop();
+//             root=root->right;
+//         }
+//     }
+//     return ans;
+// }
+
+
+// Recursive approach
+void preorderRecursive(Node* root, vector<int>& ans) {
+    if (root == NULL) {
+        return;
+    }
+    
+    ans.push_back(root->data);  // Visit the current node
+    
+    preorderRecursive(root->left, ans);   // Traverse left subtree
+    preorderRecursive(root->right, ans);  // Traverse right subtree
+}
+
+vector<int> preorder(Node* root) {
     vector<int> ans;
-    
-    if(root==NULL)
-    {
-        return ans;
-    }
-    
-    while(root!=NULL || !st.empty())
-    {
-        if(root!=NULL)
-        {
-            ans.push_back(root->data);
-            st.push(root);
-            root=root->left;
-        }
-        else
-        {
-            root = st.top();
-            st.pop();
-            root=root->right;
-        }
-    }
+    preorderRecursive(root, ans);
     return ans;
 }
+
 
 // Question link -- https://practice.geeksforgeeks.org/problems/preorder-traversal/1
