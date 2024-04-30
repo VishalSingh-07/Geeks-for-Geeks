@@ -123,31 +123,29 @@ class Solution
     }
     public:
     //Function to add two numbers represented by linked list.
-    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    struct Node* addTwoLists(struct Node* num1, struct Node* num2)
     {
         // code here
-        first=reverse(first);
-        second=reverse(second);
-        if(first==NULL)
-        {
+        Node *first=reverse(num1);
+        Node *second=reverse(num2);
+        if(first==nullptr){
             return second;
         }
-        if(second==NULL)
-        {
+        if(second==nullptr){
             return first;
         }
-        Node *dummy=new Node(0);
+        Node *dummy=new Node(-1);
         Node *temp=dummy;
         int carry=0;
-        while(first!=NULL || second!=NULL || carry!=0)
+        while(first!=nullptr || second!=nullptr || carry!=0)
         {
             int sum=0;
-            if(first!=NULL)
+            if(first!=nullptr)
             {
                 sum+=first->data;
                 first=first->next;
             }
-            if(second!=NULL)
+            if(second!=nullptr)
             {
                 sum+=second->data;
                 second=second->next;
@@ -158,10 +156,19 @@ class Solution
             temp->next=node;
             temp=temp->next;
         }
-        return reverse(dummy->next);
+        temp->next=nullptr;
+        struct Node* add=reverse(dummy->next);
+        if(add->data!=0){
+            return add;
+        }
+        else{
+            while(add->next!=nullptr & add->data==0){
+                add=add->next;
+            }
+        }
+        return add==nullptr?0:add;
     }
 };
-
 
 //{ Driver Code Starts.
 
