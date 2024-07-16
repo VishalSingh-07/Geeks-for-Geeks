@@ -155,7 +155,7 @@ int main() {
 // } Driver Code Ends
 
 /*
-1. Question link -- https://leetcode.com/problems/number-of-provinces/description/
+1. Question link -- https://www.geeksforgeeks.org/problems/number-of-provinces/1
 
 2. Solution link -- https://leetcode.com/problems/number-of-provinces/solutions/5486845/optimized-approach-with-explanation-easy-c-solution-striver-solution
 
